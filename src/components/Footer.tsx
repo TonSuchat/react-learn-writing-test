@@ -72,3 +72,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Footer);
+
+export { mapDispatchToProps };
