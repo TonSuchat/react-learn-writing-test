@@ -3,7 +3,7 @@ import { visibilityFilters } from "../actions/visibilityFilterTypes";
 import { connect } from "react-redux";
 import { setVisibilityFilter } from "../actions";
 
-class Footer extends Component<{
+export class Footer extends Component<{
   setVisibilityFilter: (filter: string) => void;
   visibilityFilter?: string;
 }> {
@@ -17,6 +17,7 @@ class Footer extends Component<{
         <div className="col-12">
           <div className="btn-group btn-block">
             <input
+              id="btnShowAll"
               type="button"
               className={
                 this.props.visibilityFilter === visibilityFilters.SHOW_ALL
@@ -28,6 +29,7 @@ class Footer extends Component<{
             />
             <input
               type="button"
+              id="btnShowCompleted"
               className={
                 this.props.visibilityFilter === visibilityFilters.SHOW_COMPLETED
                   ? "btn btn-primary"
@@ -40,6 +42,7 @@ class Footer extends Component<{
             />
             <input
               type="button"
+              id="btnShowActive"
               className={
                 this.props.visibilityFilter === visibilityFilters.SHOW_ACTIVE
                   ? "btn btn-primary"

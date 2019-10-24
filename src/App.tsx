@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import AddTodo from "./components/addTodo";
+import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
 import Footer from "./components/Footer";
 import { ITodo } from "./models/todo";
