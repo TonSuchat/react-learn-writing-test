@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { toggleTodo } from "../actions";
 import "./todo.css";
 
-class Todo extends Component<{
+export class Todo extends Component<{
   id: string;
   text: string;
   completed: boolean;
@@ -33,3 +33,4 @@ export default connect(
   null,
   mapDispatchToProps
 )(Todo);
+export { mapDispatchToProps };
