@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import AddTodo from "./components/addTodo";
+import TodoList from "./components/TodoList";
+import Footer from "./components/Footer";
+import { ITodo } from "./models/todo";
+import { visibilityFilters } from "./actions/visibilityFilterTypes";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component<
+  {
+    todos?: ITodo[];
+    visibilityFilter?: string;
+  },
+  {}
+> {
+  getTodosByFilter() {
+    const { todos, visibilityFilter } = this.props;
+    switch (visibilityFilter) {
+      case visibilityFilters.SHOW_ALL:
+        return [...todos];
+      case visibilityFilters.SHOW_COMPLETED:
+        return todos ? todos.filter(item => item.completed) : [];
+      case visibilityFilters.SHOW_ACTIVE:
+        return todos ? todos.filter(item => !item.completed) : [];
+      default:
+        return [];
+    }
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row mt-4">
+          <div className="col-md-6 ">
+            <TodoList todos={this.getTodosByFilter()} />
+            <Footer />
+          </div>
+          <div className="col-md-6">
+            <AddTodo />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({
+  todos: state.todos,
+  visibilityFilter: state.visibilityFilter
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);
