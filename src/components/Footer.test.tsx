@@ -5,15 +5,12 @@ import React from "react";
 import { visibilityFilters } from "../actions/visibilityFilterTypes";
 import { Provider } from "react-redux";
 import { setVisibilityFilter } from "../actions";
+import { initialState } from "../fixture/initialState";
 
 describe("<Footer />", () => {
   const mockStore = configureMockStore();
   let store;
   let wrapper: ReactWrapper;
-  const initialState = {
-    todos: [],
-    visibilityFilter: visibilityFilters.SHOW_ALL
-  };
   beforeEach(() => {
     store = mockStore(initialState);
     wrapper = mount(

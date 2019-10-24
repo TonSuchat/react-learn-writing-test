@@ -4,7 +4,7 @@ import { addTodo } from "../actions";
 import { ITodo } from "../models/todo";
 import { generateRandom } from "../utility/helpers";
 
-class AddTodo extends Component<
+export class AddTodo extends Component<
   {
     addTodo: (todo: ITodo) => void;
   },
@@ -40,6 +40,7 @@ class AddTodo extends Component<
         <div className="form-group">
           <label htmlFor="detail">Detail</label>
           <input
+            id="txtDetail"
             type="text"
             className="form-control"
             value={this.state.text}
@@ -47,6 +48,7 @@ class AddTodo extends Component<
           />
         </div>
         <input
+          id="btnAdd"
           type="button"
           className="btn btn-primary"
           value="Add"
@@ -65,3 +67,5 @@ export default connect(
   null,
   mapDispatchToProps
 )(AddTodo);
+
+export { mapDispatchToProps };
